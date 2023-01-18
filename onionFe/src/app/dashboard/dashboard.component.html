@@ -1,0 +1,98 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    order by clients
+  </button>
+  <ul class="dropdown-menu">
+    <li *ngFor="let client of importedData" ><a (click)="getordersbycpf(client.cpforCnpj)" class="dropdown-item">{{ client.name }}</a></li>
+  </ul>
+</div>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let client of importedOrder;let i=index;"> 
+        <div class="accordion-item">
+          <h2 class="accordion-header" [attr.id]="'flush-headingOne'+i">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapseOne'+i" aria-expanded="false" [attr.aria-controls]="'flush-collapseOne'+i">
+              {{ client.name }}
+            </button>
+          </h2>
+          <div [attr.id]="'flush-collapseOne'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-headingOne'+i" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <ul class="list-group">
+                <li class="list-group-item h2">order: #{{ client.orderNumber}}</li>
+                <li class="list-group-item">name: {{ client.name }}</li>
+                <li class="list-group-item">cpf or cnpj: {{ client.cpforcnpj }}</li>
+                <li class="list-group-item">cep: {{ client.cep }}</li>
+                <li class="list-group-item">product: {{ client.product }}</li>
+                <li class="list-group-item">order date: {{ client.orderDate | date:'dd/MM/yyyy'}}</li>
+                <li class="list-group-item">delivery date: {{ client.deliveryDate | date:'dd/MM/yyyy'}}</li>
+                <li class="list-group-item"><button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" [attr.data-bs-target]="'#offcanvasWithBothOptions'+i+i" [attr.aria-controls]="'offcanvasWithBothOptions'+i+i">final price</button>
+
+                  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" [attr.id]="'offcanvasWithBothOptions'+i+i" aria-labelledby="offcanvasWithBothOptionsLabel">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">see final price</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <li class="list-group-item h2">order: #{{ client.orderNumber}}</li>
+                      <li class="list-group-item">price without discount: R${{ client.pricewithoutdiscount }},00</li>
+                      <li class="list-group-item">price: R${{ client.price }},00</li>
+                      <li class="list-group-item">delivery fee: R${{ client.deliveryFee }},00</li>
+                      <li class="list-group-item">final price: R${{ client.finalPrice }},00</li>
+                    </div>
+                  </div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  </li>
+</ul>
+</div>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    order by products
+  </button>
+  <ul class="dropdown-menu">
+    <li *ngFor="let product of importedProduct" ><a (click)="getordersbyproduct(product.name)" class="dropdown-item">{{ product.name }}</a></li>
+  </ul>
+</div>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let product of importedOrderProduct; let i=index;"> 
+    <div class="accordion-item">
+        <h2 class="accordion-header" [attr.id]="'flush-headingTwo'+i">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapseTwo'+i" aria-expanded="false" [attr.aria-controls]="'flush-collapseTwo'+i">
+            {{ product.name }}
+          </button>
+        </h2>
+        <div [attr.id]="'flush-collapseTwo'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-headingTwo'+i" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <ul class="list-group">
+              <li class="list-group-item h2">order: #{{ product.orderNumber}}</li>
+              <li class="list-group-item">name: {{ product.name }}</li>
+              <li class="list-group-item">cpf or cnpj: {{ product.cpforcnpj }}</li>
+              <li class="list-group-item">cep: {{ product.cep }}</li>
+              <li class="list-group-item">product: {{ product.product }}</li>
+              <li class="list-group-item">order date: {{ product.orderDate | date:'dd/MM/yyyy'}}</li>
+              <li class="list-group-item">delivery date: {{ product.deliveryDate | date:'dd/MM/yyyy'}}</li>
+              <li class="list-group-item"><button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" [attr.data-bs-target]="'#offcanvasWithBothOptions'+i" [attr.aria-controls]="'offcanvasWithBothOptions'+i">final price</button>
+
+                <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" [attr.id]="'offcanvasWithBothOptions'+i" aria-labelledby="offcanvasWithBothOptionsLabel">
+                  <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">see final price</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                  <div class="offcanvas-body">
+                    <li class="list-group-item h2">order: #{{ product.orderNumber}}</li>
+                    <li class="list-group-item">price without discount: R${{ product.pricewithoutdiscount }},00</li>
+                    <li class="list-group-item">price: R${{ product.price }},00</li>
+                    <li class="list-group-item">delivery fee: R${{ product.deliveryFee }},00</li>
+                    <li class="list-group-item">final price: R${{ product.finalPrice }},00</li>
+                  </div>
+                </div></li>
+            </ul>      
+            </div>
+        </div>
+      </div>
+  </li>
+</ul>
+</div>

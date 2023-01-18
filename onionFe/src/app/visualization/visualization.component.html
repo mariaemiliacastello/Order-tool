@@ -1,0 +1,17 @@
+<h1>orders</h1>
+<ul>
+    <li *ngFor="let order of importedData"> 
+      <ul class="list-group">
+        <li class="list-group-item h2">order: #{{ order.orderNumber}}</li>
+        <li class="list-group-item">name: {{ order.name }}</li>
+        <li class="list-group-item">cpf or cnpj: {{ order.cpforcnpj }}</li>
+        <li class="list-group-item">cep: {{ order.cep }}</li>
+        <li class="list-group-item">product: {{ order.product }}</li>
+        <li class="list-group-item">order date: {{ order.orderDate | date:'dd/MM/yyyy'}}</li>
+        <li class="list-group-item">price without discount: R${{ order.pricewithoutdiscount }},00</li>
+        <li class="list-group-item">price: R${{ order.price }},00</li>
+        <li class="list-group-item">delivery fee: R${{ order.deliveryFee }},00</li>
+        <li class="list-group-item">final price: R${{ order.finalPrice }},00</li>
+      </ul>
+     </li>
+</ul>

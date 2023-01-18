@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "http://localhost:5249/todoitems",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": false,
+    "logLevel": "debug"
+  }
+}
